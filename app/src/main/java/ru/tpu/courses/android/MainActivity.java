@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ru.tpu.courses.lab1.Lab1Activity;
-import ru.tpu.courses.lab2.Lab2Activity;
+import ru.tpu.courses.lab1.Lab1KotlinActivity;
+import ru.tpu.courses.lab2.Lab2KotlinActivity;
 import ru.tpu.courses.lab3.Lab3Activity;
 import ru.tpu.courses.lab4.Lab4Activity;
 
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Переопределяя методы жизненного цикла Activity
+
         super.onCreate(savedInstanceState);
 
         // Метод setContentView задаёт корневую View у Activity.
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         // нажав по нему левой кнопкой мыши с зажатой клавишей Ctrl.
         setContentView(R.layout.activity_main);
 
+        Lab1KotlinActivity lab1KotlinActivity = new Lab1KotlinActivity();
+        Lab2KotlinActivity lab2KotlinActivity = new Lab2KotlinActivity();
+//        Lab1KotlinActivity lab3KotlinActivity = new Lab3KotlinActivity();
         // После инфлейта View, нам необходимо найти кнопки по их идентификатору, используя метод findViewById.
         // Далее вызываем метод setOnClickListener, в который передаём лямбду, содержащую то, что мы хотим сделать при нажатии на кнопку.
         // Каждая из лабораторных работ выполняется в отдельном изолированном модуле.
@@ -76,12 +80,13 @@ public class MainActivity extends AppCompatActivity {
             // Тогда, когда мы развернём приложение, используя эту сохраненную информацию, система
             // сможет восстановить приложение в той точке, на которой был пользователь.
             // Подробнее о системе Intent-ов - https://developer.android.com/guide/components/intents-filters
-            startActivity(Lab1Activity.newIntent(this));
+            startActivity(lab1KotlinActivity.newIntent(this));
         });
-        findViewById(R.id.lab2).setOnClickListener((v) -> startActivity(Lab2Activity.newIntent(this)));
+        findViewById(R.id.lab2).setOnClickListener((v) -> startActivity(lab2KotlinActivity.newIntent(this)));
         findViewById(R.id.lab3).setOnClickListener((v) -> startActivity(Lab3Activity.newIntent(this)));
         findViewById(R.id.lab4).setOnClickListener((v) -> startActivity(Lab4Activity.newIntent(this)));
         findViewById(R.id.lab5).setOnClickListener((v) -> { });
         findViewById(R.id.lab6).setOnClickListener((v) -> { });
     }
+
 }

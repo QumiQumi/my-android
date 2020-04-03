@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class Lab1Activity extends AppCompatActivity {
 
+
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, Lab1Activity.class);
     }
@@ -26,4 +27,5 @@ public class Lab1Activity extends AppCompatActivity {
         // https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html
         setTitle(getString(R.string.lab1_title, getClass().getSimpleName()));
     }
+
 }

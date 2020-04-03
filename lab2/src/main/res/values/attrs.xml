@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="Lab2ViewsContainer">
+    <declare-styleable name="Lab2ViewsContainerKotlin">
         <attr name="lab2_minViewsCount" format="integer" />
     </declare-styleable>
 </resources>

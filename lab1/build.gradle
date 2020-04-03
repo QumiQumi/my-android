@@ -1,4 +1,6 @@
 apply from: rootProject.file('feature.gradle')
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 // При сборке проекта идентификаторы ресурсов всех библиотек собираются в кучу, поэтому могут быть пересечения именования ресурсов.
 // Чтобы такого не было, заставляем билд систему на этапе компиляции проверять, что названия ресурсов начинаются с префикса модуля.
@@ -6,4 +8,7 @@ android.resourcePrefix 'lab1_'
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

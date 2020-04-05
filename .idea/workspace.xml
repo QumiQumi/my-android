@@ -10,40 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4408515b-b30a-4393-b349-d794270bd8a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_3_0_beta01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_3_0_beta01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_70_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_70_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/EditStudentActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab3/src/main/res/layout/lab3_activity_edit_student.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/ru/tpu/courses/android/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/ru/tpu/courses/android/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/lab3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/lab3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/AddStudentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/AddStudentActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Lab3Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Lab3Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/StudentsCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/StudentsCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/NumberHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/NumberHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/src/main/res/layout/lab3_activity_add_student.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/src/main/res/layout/lab3_activity_add_student.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab3/src/main/res/values-ru/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lab3/src/main/res/values-ru/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Отчеты/lab3.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Отчеты/lab3.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Отчеты/~$lab3.docx" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,37 +22,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/lab1/src/main/java/ru/tpu/courses/lab1/Lab1KotlinActivity.kt">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="560">
-                    <caret line="34" column="20" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="20" />
-                    <folding>
-                      <element signature="e#29#276#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/lab1/src/main/java/ru/tpu/courses/lab1/Lab1Kotlin_SecondActivity.kt">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="460">
-                    <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="881HADSQ66ZPF" />
   <component name="ExternalProjectsData">
@@ -102,13 +39,26 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/StudentsCache.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-82">
+              <caret line="40" column="36" lean-forward="true" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1388#1389#0" expanded="true" />
+                <element signature="e#1428#1429#0" expanded="true" />
+                <element signature="e#1484#1485#0" expanded="true" />
+                <element signature="e#1533#1534#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Lab3Activity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-650">
-              <caret line="106" column="65" selection-start-line="106" selection-start-column="54" selection-end-line="106" selection-end-column="65" />
-              <folding>
-                <element signature="e#2383#2441#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="467">
+              <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -116,33 +66,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentsAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
+            <state relative-caret-position="-73">
               <caret line="56" column="54" selection-start-line="56" selection-start-column="54" selection-end-line="56" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lab3/src/main/res/layout/lab3_activity_add_student.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-              <folding>
-                <element signature="e#571#597#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentHolder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
+            <state relative-caret-position="343">
               <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#onLongClick#0;class#StudentHolder#0" />
               </folding>
             </state>
           </provider>
@@ -165,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/EditStudentActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1460">
-              <caret line="89" column="17" lean-forward="true" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+              <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
               <folding>
                 <element signature="method#onCreateOptionsMenu#0;class#EditStudentActivity#0" />
                 <element signature="e#2412#2444#0" expanded="true" />
@@ -174,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="75" column="47" lean-forward="true" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
+            <state relative-caret-position="378">
+              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="78" selection-end-column="5" />
               <folding>
                 <element signature="e#1068#1069#0" expanded="true" />
                 <element signature="e#1099#1100#0" expanded="true" />
@@ -215,8 +151,8 @@
       <find>set</find>
       <find>setstu</find>
       <find>getst</find>
-      <find>getStudents</find>
       <find>setst</find>
+      <find>getStudents</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -258,12 +194,12 @@
         <option value="$PROJECT_DIR$/lab3/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/EditStudentActivity.java" />
         <option value="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/StudentsCache.java" />
-        <option value="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Lab3Activity.java" />
         <option value="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentsAdapter.java" />
         <option value="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Student.java" />
         <option value="$PROJECT_DIR$/lab3/src/main/res/layout/lab3_activity_edit_student.xml" />
         <option value="$PROJECT_DIR$/lab3/src/main/res/values-ru/strings.xml" />
         <option value="$PROJECT_DIR$/lab3/src/main/res/layout/lab3_activity_add_student.xml" />
+        <option value="$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Lab3Activity.java" />
       </list>
     </option>
   </component>
@@ -904,13 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lab1/src/main/java/ru/tpu/courses/lab1/Lab1Kotlin_SecondActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/AddStudentActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -925,57 +854,6 @@
         </state>
       </provider>
       <provider editor-type-id="android-manifest" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/StudentsCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="40" column="36" lean-forward="true" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1358#1359#0" expanded="true" />
-            <element signature="e#1395#1396#0" expanded="true" />
-            <element signature="e#1453#1454#0" expanded="true" />
-            <element signature="e#1493#1494#0" expanded="true" />
-            <element signature="e#1549#1550#0" expanded="true" />
-            <element signature="e#1598#1599#0" expanded="true" />
-            <element signature="e#1374#1383#0" expanded="true" />
-            <element signature="e#1471#1480#0" expanded="true" />
-            <element signature="e#1761#1770#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Lab3Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-650">
-          <caret line="106" column="65" selection-start-line="106" selection-start-column="54" selection-end-line="106" selection-end-column="65" />
-          <folding>
-            <element signature="e#2383#2441#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#onLongClick#0;class#StudentHolder#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/NumberHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#598#599#0" expanded="true" />
-            <element signature="e#645#646#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lab3/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor" />
@@ -1003,7 +881,7 @@
     <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/EditStudentActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1460">
-          <caret line="89" column="17" lean-forward="true" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+          <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#EditStudentActivity#0" />
             <element signature="e#2412#2444#0" expanded="true" />
@@ -1011,10 +889,81 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lab3/src/main/res/layout/lab3_item_student.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab1/src/main/java/ru/tpu/courses/lab1/Lab1Kotlin_SecondActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab3/src/main/res/layout/lab3_activity_add_student.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+          <folding>
+            <element signature="e#571#597#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/NumberHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#598#599#0" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-73">
+          <caret line="56" column="54" selection-start-line="56" selection-start-column="54" selection-end-line="56" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Lab3Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/StudentsCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-82">
+          <caret line="40" column="36" lean-forward="true" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1428#1429#0" expanded="true" />
+            <element signature="e#1484#1485#0" expanded="true" />
+            <element signature="e#1533#1534#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="75" column="47" lean-forward="true" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
+        <state relative-caret-position="378">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="78" selection-end-column="5" />
           <folding>
             <element signature="e#1068#1069#0" expanded="true" />
             <element signature="e#1099#1100#0" expanded="true" />
@@ -1027,28 +976,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab3/src/main/res/layout/lab3_item_student.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab3/src/main/java/ru/tpu/courses/lab3/adapter/StudentsAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="56" column="54" selection-start-line="56" selection-start-column="54" selection-end-line="56" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab3/src/main/res/layout/lab3_activity_add_student.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-          <folding>
-            <element signature="e#571#597#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
   </component>
 </project>

@@ -11,7 +11,7 @@ import androidx.core.util.ObjectsCompat;
  * {@link android.os.Bundle}, необходимо реализовать интерфейс {@link Parcelable}. В нём описывается
  * как сохранить и восстановить объект используя примитивные свойства (String, int и т.д.).
  */
-public class Student implements Parcelable {
+public class Student implements Parcelable, Comparable<Student> {
 
 	@NonNull
 	public String firstName;
@@ -19,7 +19,6 @@ public class Student implements Parcelable {
 	public String secondName;
 	@NonNull
 	public String lastName;
-
 	public Student(@NonNull String firstName, @NonNull String secondName, @NonNull String lastName) {
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -69,5 +68,13 @@ public class Student implements Parcelable {
 	@Override
 	public int hashCode() {
 		return ObjectsCompat.hash(lastName, firstName, secondName);
+	}
+
+	@Override
+	public int compareTo(Student student) {
+		String fullName=secondName+firstName+lastName;
+		String concat=student.secondName+student.firstName+student.lastName;
+		return fullName.compareTo(concat);
+//		return secondName.compareTo(student.secondName);
 	}
 }

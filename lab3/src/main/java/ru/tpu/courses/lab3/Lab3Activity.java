@@ -2,15 +2,20 @@ package ru.tpu.courses.lab3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import ru.tpu.courses.lab3.adapter.StudentHolder;
 import ru.tpu.courses.lab3.adapter.StudentsAdapter;
 
 /**
@@ -32,10 +37,11 @@ import ru.tpu.courses.lab3.adapter.StudentsAdapter;
  * Для работы RecyclerView необходимо подключить отдельную библиотеку (см. build.gradle)
  * </p>
  */
-public class Lab3Activity extends AppCompatActivity {
+public class Lab3Activity extends AppCompatActivity implements StudentsAdapter.OnNoteClickListener, StudentsAdapter.OnNoteLongClickListener {
 
     private static final int REQUEST_STUDENT_ADD = 1;
-
+    private static final int REQUEST_STUDENT_EDIT = 2;
+    private static final String TAG = "MY";
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, Lab3Activity.class);
     }
@@ -57,64 +63,90 @@ public class Lab3Activity extends AppCompatActivity {
         list = findViewById(android.R.id.list);
         fab = findViewById(R.id.fab);
 
-        /*
-        Здесь идёт инициализация RecyclerView. Первое, что необходимо для его работы, это установить
-        реализацию LayoutManager-а. Он содержит логику размещения View внутри RecyclerView. Так,
-        LinearLayoutManager, который используется ниже, располагает View последовательно, друг за
-        другом, по аналогии с LinearLayout-ом. Из альтернатив можно например использовать
-        GridLayoutManager, который располагает View в виде таблицы. Необходимость написания своего
-        LayoutManager-а возникает очень редко и при этом является весьма сложным процессом, поэтому
-        рассматриваться в лабораторной работе не будет.
-         */
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        list.setLayoutManager(layoutManager);
+        initRecyclerView();
 
-        /*
-        Следующий ключевой компонент - это RecyclerView.Adapter. В нём описывается вся информация,
-        необходимая для заполнения RecyclerView. В примере мы выводим пронумерованный список
-        студентов, подробнее о работе адаптера в документации к классу StudentsAdapter.
-         */
-        list.setAdapter(studentsAdapter = new StudentsAdapter());
-        studentsAdapter.setStudents(studentsCache.getStudents());
-
-        /*
-        При нажатии на кнопку мы переходим на Activity для добавления студента. Обратите внимание,
-        что здесь используется метод startActivityForResult. Этот метод позволяет организовывать
-        передачу данных обратно от запущенной Activity. В нашем случае, после закрытия AddStudentActivity,
-        у нашей Activity будет вызван метод onActivityResult, в котором будут данные, которые мы
-        указали перед закрытием AddStudentActivity.
-         */
         fab.setOnClickListener(
                 v -> startActivityForResult(
                         AddStudentActivity.newIntent(this),
                         REQUEST_STUDENT_ADD
                 )
         );
+
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(list);
     }
 
-    /**
-     * Этот метод вызывается после того, как мы ушли с запущенной с помощью метода
-     * {@link #startActivityForResult(Intent, int)} Activity.
-     *
-     * @param requestCode переданный в метод startActivityForResult requestCode, для случаев,
-     *                    когда с нашей активитизапускается несколько различных активити. По этому
-     *                    идентификатору мы их различаем.
-     * @param resultCode  идентификатор, описывающий, с каким результатом запущенная активити была
-     *                    завершена. Если пользователь просто закрыл Activity, то по умолчанию будет
-     *                    {@link #RESULT_CANCELED}.
-     * @param data        даные переданные нам от запущенной Activity.
-     */
+    private void initRecyclerView() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        list.setLayoutManager(layoutManager);
+
+        list.setAdapter(studentsAdapter = new StudentsAdapter(this,this));
+        studentsAdapter.setStudents(studentsCache.getStudents());
+        studentsAdapter.notifyDataSetChanged();
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult: requestCode " + requestCode + " resultCode" + resultCode);
         if (requestCode == REQUEST_STUDENT_ADD && resultCode == RESULT_OK) {
             Student student = AddStudentActivity.getResultStudent(data);
 
             studentsCache.addStudent(student);
 
             studentsAdapter.setStudents(studentsCache.getStudents());
+            studentsAdapter.notifyDataSetChanged();
+            //studentsAdapter.notifyItemRangeInserted(studentsAdapter.getItemCount() - 2, 2);
+            list.scrollToPosition(studentsAdapter.getItemCount() - 1);
+        }
+        if (requestCode == REQUEST_STUDENT_EDIT && resultCode == RESULT_OK) {
+            Student student = EditStudentActivity.getResultStudent(data);
+
+            studentsCache.editStudent(student);
+
+            studentsAdapter.setStudents(studentsCache.getStudents());
+            studentsAdapter.notifyDataSetChanged();
+            //studentsAdapter.notifyItemRangeInserted(studentsAdapter.getItemCount() - 2, 2);
+            list.scrollToPosition(studentsAdapter.getItemCount() - 1);
+        }
+    }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback= new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position=viewHolder.getAdapterPosition();
+            Student student=studentsAdapter.getStudent(position);
+            Log.d(TAG, "onSwiped: swiped, position: " +position+", "+student.firstName);
+            studentsCache.removeStudent(student);
+
+            studentsAdapter.setStudents(studentsCache.getStudents());
+            studentsAdapter.notifyDataSetChanged();
             studentsAdapter.notifyItemRangeInserted(studentsAdapter.getItemCount() - 2, 2);
             list.scrollToPosition(studentsAdapter.getItemCount() - 1);
         }
+
+    };
+
+    @Override
+    public void onNoteClick(int position) {
+        Student student=studentsAdapter.getStudent(position);
+        Log.d(TAG, "onNoteClick: clicked, position: " +position+", "+student.firstName);
+    }
+
+    @Override
+    public void onNoteLongClick(int position) {
+        Student student=studentsAdapter.getStudent(position);
+        Log.d(TAG, "onNoteLongClick: clicked, position: " +position+", "+student.firstName);
+        Intent intent = EditStudentActivity.newIntent(this);
+        intent.putExtra(student.getClass().getCanonicalName(), student);
+        startActivityForResult(
+                intent,
+                REQUEST_STUDENT_EDIT
+        );
     }
 }

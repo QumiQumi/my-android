@@ -1,8 +1,10 @@
 package ru.tpu.courses.lab3.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,9 +17,11 @@ public class NumberHolder extends RecyclerView.ViewHolder {
 	public NumberHolder(ViewGroup parent) {
 		super(LayoutInflater.from(parent.getContext()).inflate(R.layout.lab3_item_number, parent, false));
 		number = itemView.findViewById(R.id.number);
+
 	}
 
 	public void bind(int studentIndex) {
 		number.setText((studentIndex + 1) + ")");
 	}
+
 }

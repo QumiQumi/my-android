@@ -1,26 +1,29 @@
 package ru.tpu.courses.lab3;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import ru.tpu.courses.lab3.adapter.StudentsAdapter;
 
-/**
- * Activity с полями для заполнения ФИО студента.
- */
-public class AddStudentActivity extends AppCompatActivity {
+public class EditStudentActivity extends AppCompatActivity {
 
     private static final String EXTRA_STUDENT = "student";
-
+    public static final String STUDENT_ID= "student_id";
+    private static final String TAG = "EditStudentActivity";
+    private StudentsAdapter studentsAdapter;
+    private Student studentToEdit;
     public static Intent newIntent(@NonNull Context context) {
-        return new Intent(context, AddStudentActivity.class);
+        return new Intent(context, EditStudentActivity.class);
     }
 
     public static Student getResultStudent(@NonNull Intent intent) {
@@ -36,13 +39,17 @@ public class AddStudentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lab3_activity_add_student);
+        setContentView(R.layout.lab3_activity_edit_student);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        studentToEdit = getIntent().getParcelableExtra(Student.class.getCanonicalName());
+        Log.d(TAG, "onCreate: student:"+studentToEdit.firstName);
         firstName = findViewById(R.id.first_name);
+        firstName.setText(studentToEdit.firstName);
         secondName = findViewById(R.id.second_name);
+        secondName.setText(studentToEdit.secondName);
         lastName = findViewById(R.id.last_name);
+        lastName.setText(studentToEdit.lastName);
     }
 
     @Override
@@ -79,10 +86,11 @@ public class AddStudentActivity extends AppCompatActivity {
 
             // Проверяем, что точно такого же студента в списке нет
             if (studentsCache.contains(student)) {
-                Toast.makeText(this, R.string.lab3_error_already_exists, Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, R.string.lab3_error_already_exists, Toast.LENGTH_LONG).show();
+                finish();
                 return true;
             }
-
+            studentsCache.removeStudent(studentToEdit);
             // Сохраняем Intent с инфорамцией от этой Activity, который будет передан в onActivityResult
             // вызвавшей его Activity.
             Intent data = new Intent();

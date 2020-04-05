@@ -1,27 +1,22 @@
 package ru.tpu.courses.lab3;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
-/**
- * Кэш списка студентов в оперативной памяти. Самый быстрый тип кэша, но ограничен размерами
- * оперативной памяти и имеет время жизни равное жизни приложения. Т.е. если приложение будет
- * выгружено из оперативной памяти - то все данные из этого кэша пропадут.
- * Такой тип кэшей используется для временных данных, потеря которых не важна, в большинстве случаев
- * чтобы не делать дополнительные запросы на сервер.
- */
+
 public class StudentsCache {
-
+    private static final String TAG = "StudentsCache";
     private static StudentsCache instance;
 
-    /**
-     * Классическая реализация паттерна Singleton. Нам необходимо, чтобы в приложении был только
-     * один кэш студентов.
-     */
     public static StudentsCache getInstance() {
         if (instance == null) {
             synchronized (StudentsCache.class) {
@@ -37,17 +32,48 @@ public class StudentsCache {
 
     private StudentsCache() {
     }
-
     @NonNull
     public List<Student> getStudents() {
-        return new ArrayList<>(students);
+
+        List<Student> students = new LinkedList<>(this.students);
+        //
+        Collections.sort(students);
+        for (Student p : students) {
+            Log.d(TAG, p.secondName+" "+p.firstName+" "+p.lastName);
+        }
+        //sortStudents();
+        return students;
     }
 
     public void addStudent(@NonNull Student student) {
         students.add(student);
     }
+    public void editStudent(@NonNull Student student) {
 
+        students.add(student);
+    }
+    public void removeStudent(@NonNull Student student) {
+        students.remove(student);
+    }
     public boolean contains(@NonNull Student student) {
         return students.contains(student);
+    }
+    public void sortStudents(){
+        Log.d(TAG, "List: ");
+        List<Student> peopleList = new LinkedList<Student>();
+        peopleList.addAll(this.students);
+        Collections.<Student>sort(peopleList);
+        for (Student p : peopleList) {
+            Log.d(TAG, p.secondName+" "+p.firstName+" "+p.lastName);
+        }
+        Log.d(TAG, "TreeSet: ");
+        TreeSet<Student> treeSet = new TreeSet<Student>();
+        treeSet.addAll(this.students);
+        for (Student p : treeSet) {
+            Log.d(TAG, p.secondName+" "+p.firstName+" "+p.lastName);
+        }
+
+
+
     }
 }

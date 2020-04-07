@@ -8,6 +8,7 @@ import ru.tpu.courses.lab1.Lab1KotlinActivity;
 import ru.tpu.courses.lab2.Lab2KotlinActivity;
 import ru.tpu.courses.lab3.Lab3Activity;
 import ru.tpu.courses.lab4.Lab4Activity;
+import ru.tpu.courses.lab5.Lab5Activity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,8 +26,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.lab2).setOnClickListener((v) -> startActivity(lab2KotlinActivity.newIntent(this)));
         findViewById(R.id.lab3).setOnClickListener((v) -> startActivity(Lab3Activity.newIntent(this)));
         findViewById(R.id.lab4).setOnClickListener((v) -> startActivity(Lab4Activity.newIntent(this)));
-        findViewById(R.id.lab5).setOnClickListener((v) -> { });
-        findViewById(R.id.lab6).setOnClickListener((v) -> { });
+        findViewById(R.id.lab5).setOnClickListener((v) -> startActivity(Lab5Activity.newIntent(this)));
     }
 
 }

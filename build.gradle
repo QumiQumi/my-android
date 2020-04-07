@@ -46,4 +46,5 @@ ext {
     recyclerview = '1.0.0'
     material = '1.0.0'
     room = '2.2.1'
+    okhttp = '4.4.0'
 }

@@ -19,7 +19,14 @@ public class StudentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final int TYPE_STUDENT = 1;
 
     private List<Student> students = new ArrayList<>();
+    private OnNoteClickListener mOnNoteClickListener;
+    private OnNoteLongClickListener mOnNoteLongClickListener;
 
+
+    public StudentsAdapter(OnNoteClickListener onNoteClickListener, OnNoteLongClickListener onNoteLongClickListener){
+        this.mOnNoteClickListener=onNoteClickListener;
+        this.mOnNoteLongClickListener=onNoteLongClickListener;
+    }
     @Override
     @NonNull
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -27,7 +34,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             case TYPE_NUMBER:
                 return new NumberHolder(parent);
             case TYPE_STUDENT:
-                return new StudentHolder(parent);
+                return new StudentHolder(parent, mOnNoteClickListener, mOnNoteLongClickListener);
         }
         throw new IllegalArgumentException("unknown viewType = " + viewType);
     }
@@ -43,8 +50,9 @@ public class StudentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 StudentHolder studentHolder = (StudentHolder) holder;
                 Student student = students.get(position / 2);
 
-                studentHolder.student.setText(student.lastName + " " + student.firstName
-                        + " " + student.secondName);
+                studentHolder.student.setText(
+                        student.secondName + " " + student.firstName + " " + student.lastName
+                );
 
                 if (!TextUtils.isEmpty(student.photoPath)) {
                     studentHolder.photo.setVisibility(View.VISIBLE);
@@ -69,5 +77,15 @@ public class StudentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public Student getStudent(int position){
+        return this.students.get(position/2);
+    }
+    public interface OnNoteClickListener{
+        void onNoteClick(int position);
+    }
+    public interface OnNoteLongClickListener{
+        void onNoteLongClick(int position);
     }
 }

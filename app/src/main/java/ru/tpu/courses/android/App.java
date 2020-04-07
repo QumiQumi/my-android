@@ -13,7 +13,7 @@ public class App extends Application {
 
         // region lab3
         StudentsCache studentsCache = StudentsCache.getInstance();
-        studentsCache.addStudent(new Student("Хардкод", "Хардкодович", "Хардкодов"));
+        studentsCache.addStudent(new Student("Хардкод", "Хардкодов", "Хардкодович"));
         // endregion lab3
     }
 }

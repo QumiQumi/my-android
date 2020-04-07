@@ -1,5 +1,9 @@
 package ru.tpu.courses.lab4.add;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,49 +11,33 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-
 import java.io.File;
 import java.io.IOException;
 
 import ru.tpu.courses.lab4.Const;
 import ru.tpu.courses.lab4.R;
+import ru.tpu.courses.lab4.adapter.StudentsAdapter;
 import ru.tpu.courses.lab4.db.Lab4Database;
 import ru.tpu.courses.lab4.db.Student;
 import ru.tpu.courses.lab4.db.StudentDao;
 
-/**
- * Аналогичный экран ввода информации о студенте, как и в lab3. Но теперь введенная информация
- * сохраняется в {@link android.content.SharedPreferences} (см {@link TempStudentPref}), что
- * позволяет восстановить введенную информацию после ухода и возвращения на экран. Также теперь
- * можно добавить фотографию через приложение камеры. Для работы с картинками см
- * {@link BitmapProcessor}.
- */
-public class AddStudentActivity extends AppCompatActivity {
+public class EditStudentActivity extends AppCompatActivity {
 
     private static final String EXTRA_STUDENT = "student";
-
     private static final int REQUEST_CAMERA = 0;
-
-    public static Intent newIntent(@NonNull Context context) {
-        return new Intent(context, AddStudentActivity.class);
-    }
-
-    public static Student getResultStudent(@NonNull Intent intent) {
-        return intent.getParcelableExtra(EXTRA_STUDENT);
-    }
+    private static final String TAG = "EditStudentActivity";
+    private StudentsAdapter studentsAdapter;
+    private Student studentToEdit;
 
     private StudentDao studentDao;
 
-    private TempStudentPref studentPref;
     private BitmapProcessor bitmapProcessor;
 
     private EditText firstName;
@@ -59,46 +47,41 @@ public class AddStudentActivity extends AppCompatActivity {
 
     private String photoPath;
 
-    private boolean skipSaveToPrefs;
+
+    public static Intent newIntent(@NonNull Context context) {
+        return new Intent(context, EditStudentActivity.class);
+    }
+
+    public static Student getResultStudent(@NonNull Intent intent) {
+        return intent.getParcelableExtra(EXTRA_STUDENT);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lab4_activity_add_student);
+        setContentView(R.layout.lab4_activity_edit_student);
 
-        studentPref = new TempStudentPref(this);
         bitmapProcessor = new BitmapProcessor(this);
         studentDao = Lab4Database.getInstance(this).studentDao();
 
-        //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        studentToEdit = getIntent().getParcelableExtra(Student.class.getCanonicalName());
+        Log.d(TAG, "onCreate: student:"+studentToEdit.firstName);
 
         firstName = findViewById(R.id.first_name);
         secondName = findViewById(R.id.second_name);
         lastName = findViewById(R.id.last_name);
         photo = findViewById(R.id.photo);
 
-        firstName.setText(studentPref.getFirstName());
-        secondName.setText(studentPref.getSecondName());
-        lastName.setText(studentPref.getLastName());
-        photoPath = studentPref.getPhotoPath();
+        firstName.setText(studentToEdit.firstName);
+        secondName.setText(studentToEdit.secondName);
+        lastName.setText(studentToEdit.lastName);
+        photoPath = studentToEdit.photoPath;
         if (photoPath != null) {
             photo.setImageURI(Uri.parse(photoPath));
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (!skipSaveToPrefs) {
-            studentPref.set(
-                    firstName.getText().toString(),
-                    secondName.getText().toString(),
-                    lastName.getText().toString(),
-                    photoPath
-            );
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,21 +89,70 @@ public class AddStudentActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Если пользователь нажал "назад", то просто закрываем Activity
         if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
+        // Если пользователь нажал "Сохранить"
         if (item.getItemId() == R.id.action_save) {
             saveStudent();
             return true;
         }
-
         if (item.getItemId() == R.id.action_add_photo) {
             requestPhotoFromCamera();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void saveStudent() {
+
+
+        // Проверяем, что все поля были указаны
+        if (TextUtils.isEmpty(firstName.getText().toString()) ||
+                TextUtils.isEmpty(secondName.getText().toString()) ||
+                TextUtils.isEmpty(lastName.getText().toString())) {
+            // Класс Toast позволяет показать системное уведомление поверх всего UI
+            Toast.makeText(this, R.string.lab4_error_empty_fields, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Проверяем, что точно такого же студента в списке нет
+        if (studentDao.count(firstName.getText().toString(), secondName.getText().toString(), lastName.getText().toString(), photoPath) > 0) {
+            Toast.makeText(
+                    this,
+                    R.string.lab4_error_already_exists,
+                    Toast.LENGTH_LONG
+            ).show();
+            finish();
+
+        }
+        // сохраняем объект студента из введенных
+        studentToEdit.firstName=firstName.getText().toString();
+        studentToEdit.secondName=secondName.getText().toString();
+        studentToEdit.lastName=lastName.getText().toString();
+        studentToEdit.photoPath=photoPath;
+//        Student student = new Student(
+//                firstName.getText().toString(),
+//                secondName.getText().toString(),
+//                lastName.getText().toString(),
+//                photoPath
+//        );
+
+        // Сохраняем Intent с инфорамцией от этой Activity, который будет передан в onActivityResult
+        // вызвавшей его Activity.
+        Intent data = new Intent();
+        // Сохраяем объект студента. Для того, чтобы сохранить объект класса, он должен реализовывать
+        // интерфейс Parcelable или Serializable, т.к. Intent передаётся в виде бинарных данных
+        data.putExtra(EXTRA_STUDENT, studentToEdit);
+        // Указываем resultCode и сам Intent, которые будут переданы вызвавшей нас Activity в методе
+        // onActivityResult
+        setResult(RESULT_OK, data);
+        // Закрываем нашу Activity
+        finish();
     }
 
     @Override
@@ -170,41 +202,5 @@ public class AddStudentActivity extends AppCompatActivity {
             ).show();
             photoPath = null;
         }
-    }
-
-    private void saveStudent() {
-        Student student = new Student(
-                firstName.getText().toString(),
-                secondName.getText().toString(),
-                lastName.getText().toString(),
-                photoPath
-        );
-
-        // Проверяем, что все поля были указаны
-        if (TextUtils.isEmpty(student.firstName) ||
-                TextUtils.isEmpty(student.secondName) ||
-                TextUtils.isEmpty(student.lastName)) {
-            // Класс Toast позволяет показать системное уведомление поверх всего UI
-            Toast.makeText(this, R.string.lab4_error_empty_fields, Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if (studentDao.count(student.firstName, student.secondName, student.lastName, photoPath) > 0) {
-                Toast.makeText(
-                        this,
-                        R.string.lab4_error_already_exists,
-                        Toast.LENGTH_LONG
-            ).show();
-            return;
-        }
-
-        skipSaveToPrefs = true;
-
-        studentPref.clear();
-
-        Intent data = new Intent();
-        data.putExtra(EXTRA_STUDENT, student);
-        setResult(RESULT_OK, data);
-        finish();
     }
 }

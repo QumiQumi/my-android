@@ -16,7 +16,8 @@ public class StudentHolder extends RecyclerView.ViewHolder implements View.OnCli
     StudentsAdapter.OnNoteClickListener onNoteClickListener;
     StudentsAdapter.OnNoteLongClickListener onNoteLongClickListener;
 
-    public StudentHolder(ViewGroup parent, StudentsAdapter.OnNoteClickListener onNoteClickListener, StudentsAdapter.OnNoteLongClickListener onNoteLongClickListener) {
+    public StudentHolder(ViewGroup parent, StudentsAdapter.OnNoteClickListener onNoteClickListener,
+                         StudentsAdapter.OnNoteLongClickListener onNoteLongClickListener) {
         super(LayoutInflater.from(parent.getContext()).inflate(R.layout.lab3_item_student, parent, false));
         student = itemView.findViewById(R.id.student);
 

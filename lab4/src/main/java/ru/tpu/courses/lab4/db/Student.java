@@ -10,7 +10,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Student implements Parcelable {
+public class Student implements Parcelable, Comparable<Student> {
 
     @PrimaryKey(autoGenerate = true)
     public int id;
@@ -71,5 +71,12 @@ public class Student implements Parcelable {
         dest.writeString(secondName);
         dest.writeString(lastName);
         dest.writeString(photoPath);
+    }
+    @Override
+    public int compareTo(Student student) {
+        String fullName=secondName+firstName+lastName;
+        String concat=student.secondName+student.firstName+student.lastName;
+        return fullName.compareTo(concat);
+//		return secondName.compareTo(student.secondName);
     }
 }

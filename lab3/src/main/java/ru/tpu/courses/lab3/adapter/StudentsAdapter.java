@@ -24,8 +24,8 @@ public class StudentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public static final int TYPE_STUDENT = 1;
 
     private List<Student> students = new ArrayList<>();
-    private  OnNoteClickListener mOnNoteClickListener;
-    private  OnNoteLongClickListener mOnNoteLongClickListener;
+    private OnNoteClickListener mOnNoteClickListener;
+    private OnNoteLongClickListener mOnNoteLongClickListener;
 
     public StudentsAdapter(OnNoteClickListener onNoteClickListener, OnNoteLongClickListener onNoteLongClickListener){
         this.mOnNoteClickListener=onNoteClickListener;

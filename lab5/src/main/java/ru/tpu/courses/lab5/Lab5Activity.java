@@ -2,92 +2,167 @@ package ru.tpu.courses.lab5;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-/**
- * <b>Запросы к сети, многопоточность</b>
- * <p>В Андроиде весь рендер UI и обработка пользовательских нажатий выполняется на основном (UI) потоке.
- * Таким образом, если у нас есть какая-то потенциально длительная операция (запросы к БД, в сеть),
- * то их необходимо выполнять на отдельном потоке. Реализация многопоточного кода зачастую бывает
- * нетривиальной, например из-за проблемы гонки потоков - https://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5_%D0%B3%D0%BE%D0%BD%D0%BA%D0%B8
- * <p/>
- * <p>
- * Есть много способов писать многопоточный код (как средствами фреймворка, так и многопоточный код),
- * но в лабораторной работе будет рассмотрен самый стандартный подход, через потоки. В предлагаемой
- * реализации много минусов, она создана только для ознакомления с основами многопоточного взаимодействия
- * в андроид.
- * </p>ё
- * <p>
- * Офф документация - https://developer.android.com/training/multiple-threads/index.html
- * </p>
- */
+import ru.tpu.courses.lab5.cache.TempUserPref;
+import ru.tpu.courses.lab5.cache.UserCache;
+import ru.tpu.courses.lab5.db.Repo;
+import ru.tpu.courses.lab5.db.User;
+import ru.tpu.courses.lab5.task.Observer;
+import ru.tpu.courses.lab5.task.SearchTask;
+import ru.tpu.courses.lab5.task.Task;
+
 public class Lab5Activity extends AppCompatActivity {
 
     private static final String TAG = Lab5Activity.class.getSimpleName();
-
-    /**
-     * Создаём пул потоков. Он необходим, чтобы переиспользовать уже созданные {@link Thread}, а не
-     * создавать каждый раз новый поток при необходимости выполнения асинхронной операции.
-     * Переменная статическая, т.к. должна жить вне жизненного цикла активити. Обычно такие вещи
-     * инициализируются где-то в {@link android.app.Application}.
-     */
     private static Executor threadExecutor = Executors.newCachedThreadPool();
+    private String username;
+    private String password;
+
+    private EditText login;
+    private EditText passwordForLogin;
+
+    public ProgressBar progressBar;
+    private Button btnLogIn;
+    private SearchTask task;
+
+    private TempUserPref userPref;
+    SharedPreferences mPrefs;
+    public static final String APP_PREFERENCES_USER = "User";
 
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, Lab5Activity.class);
     }
+    public void onButtonClick(View view) {
+        if (isConnectedToInternet()) {
+            username = login.getText().toString();
+            password = passwordForLogin.getText().toString();
 
-    private SearchTask task;
+            if (username.trim().isEmpty() || password.trim().isEmpty())
+                Toast.makeText(this, "Заполните пустые поля.", Toast.LENGTH_SHORT).show();
+            else
+                threadExecutor.execute(task=new SearchTask(searchObserver, username, password));
+        }
+        else
+            Toast.makeText(this, "Проверьте подключение к интернету", Toast.LENGTH_SHORT).show();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setTitle(getString(R.string.lab5_title, getClass().getSimpleName()));
+        setContentView(R.layout.lab5_activity);
+        mPrefs = getSharedPreferences(APP_PREFERENCES_USER, MODE_PRIVATE);
+        userPref=new TempUserPref(this);
+        progressBar= findViewById(R.id.lab5_progressbar);
+        login=findViewById(R.id.lab5_login);
+        passwordForLogin=findViewById(R.id.lab5_password);
+        btnLogIn=findViewById(R.id.lab5_button);
+        progressBar.setVisibility(View.GONE);
 
-        // Создаём задачку на поиск по репозиториям гитхаба. Процесс выполнения задачи будет приходить
-        // в searchObserver
-        task = new SearchTask(searchObserver);
+        login.setText(userPref.getLogin());
+        passwordForLogin.setText(userPref.getPassword());
 
-        // Выполняем задачу на экзекьюторе. Он внутри проверит, есть ли в пуле свободный поток. Если
-        // есть, то выполнит задачу на нём. Если нет, то создаст новый (new Thread(task).start())
-        threadExecutor.execute(task);
+
+        //Если уже есть юзер в преференсах
+        //Gson gson = new Gson();
+        String json = mPrefs.getString("User", "");
+        User user = new Gson().fromJson(json, User.class);
+        if(user!=null){
+            Log.d(TAG, "onCreate: Юзер из SharedPreferences! " + user.login);
+
+            Intent intent = InfoActivity.newIntent(Lab5Activity.this);
+            intent.putExtra(user.getClass().getCanonicalName(), user);
+            intent.putExtra("isSaved", true);
+            startActivity(intent);
+        }
+
     }
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+            userPref.setPasswods(login.getText().toString(), passwordForLogin.getText().toString());
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Обязательно необходимо отписать обсервер до уничтожения Activity, иначе мы создадим утечку
-        // памяти
+        if(task!=null)
         task.unregisterObserver();
     }
 
-    private Observer<List<Repo>> searchObserver = new Observer<List<Repo>>() {
+    private Observer<User> searchObserver = new Observer<User>() {
         @Override
-        public void onLoading(@NonNull Task<List<Repo>> task) {
+        public void onLoading(@NonNull Task<User> task) {
             Log.d(TAG, "onLoading");
+            loadingTrue();
         }
 
         @Override
-        public void onSuccess(@NonNull Task<List<Repo>> task, @Nullable List<Repo> data) {
-            Log.d(TAG, "onSuccess");
-            for (Repo repo : data) {
-                Log.d(TAG, repo.toString());
-            }
+        public void onSuccess(@NonNull Task<User> task, @Nullable User user) {
+            Log.d(TAG, "onSuccess. User: "+user.login);
+            user.password=passwordForLogin.getText().toString();
+            Intent intent = InfoActivity.newIntent(Lab5Activity.this);
+            intent.putExtra(user.getClass().getCanonicalName(), user);
+            intent.putExtra("isSaved", false);
+            loadingFalse();
+            startActivity(intent);
         }
 
         @Override
-        public void onError(@NonNull Task<List<Repo>> task, @NonNull Exception e) {
-            Log.e(TAG, "onError", e);
+        public void onError(@NonNull Task<User> task, @NonNull Exception e) {
+            Log.d(TAG, "onError "+ e.toString()+"|");
+            Toast.makeText(Lab5Activity.this, "Неправильный логин или пароль.", Toast.LENGTH_SHORT).show();
+            loadingFalse();
         }
     };
+
+    private void loadingTrue() {
+        btnLogIn.setClickable(false);
+        login.setEnabled(false);
+        passwordForLogin.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
+    }
+    private void loadingFalse() {
+        btnLogIn.setClickable(true);
+        login.setEnabled(true);
+        passwordForLogin.setEnabled(true);
+        progressBar.setVisibility(View.GONE);
+    }
+    public boolean isConnectedToInternet(){
+        ConnectivityManager connectivity = (ConnectivityManager)getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null)
+        {
+            NetworkInfo[] info = connectivity.getAllNetworkInfo();
+            if (info != null)
+                for (int i = 0; i < info.length; i++)
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                    {
+                        return true;
+                    }
+        }
+        return false;
+    }
+
 }

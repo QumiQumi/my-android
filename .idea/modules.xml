@@ -9,6 +9,8 @@
       <module fileurl="file://$PROJECT_DIR$/lab3/lab3.iml" filepath="$PROJECT_DIR$/lab3/lab3.iml" group="TPU Android/lab3" />
       <module fileurl="file://$PROJECT_DIR$/lab4/lab4.iml" filepath="$PROJECT_DIR$/lab4/lab4.iml" group="TPU Android/lab4" />
       <module fileurl="file://$PROJECT_DIR$/lab5/lab5.iml" filepath="$PROJECT_DIR$/lab5/lab5.iml" group="TPU Android/lab5" />
+      <module fileurl="file://$PROJECT_DIR$/app/test/test.iml" filepath="$PROJECT_DIR$/app/test/test.iml" group="TPU Android/app/test" />
+      <module fileurl="file://$PROJECT_DIR$/testapi/testapi.iml" filepath="$PROJECT_DIR$/testapi/testapi.iml" group="TPU Android/testapi" />
     </modules>
   </component>
 </project>

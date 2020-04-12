@@ -39,4 +39,5 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$appcompat"
     implementation project(path: ':lab5')
+    //implementation project(path: ':app:testApi')
 }

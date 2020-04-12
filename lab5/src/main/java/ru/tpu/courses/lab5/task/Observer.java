@@ -1,4 +1,4 @@
-package ru.tpu.courses.lab5;
+package ru.tpu.courses.lab5.task;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
